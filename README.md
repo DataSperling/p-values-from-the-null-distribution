@@ -18,8 +18,9 @@ The experimental data is contained in femaleMiceWeights.csv and the population d
 is in femaleControlsPopulation.csv. Respective test cohorts are formed from the 
 data in the following way:
 
-###Extracting the Experimental Cohorts
+### Extracting the Experimental Cohorts
 
+`
 # extract control group that were fed normal diet (chow)
 control <- dplyr::filter(data,Diet=="chow") %>% 
   dplyr::select(Bodyweight) %>% 
@@ -29,21 +30,24 @@ control <- dplyr::filter(data,Diet=="chow") %>%
 treatment <- filter(data,Diet=="hf") %>% 
   dplyr::select(Bodyweight) %>% 
   unlist
-  
+`
+
 We can see the difference in means of the two groups like this:
 
+`
 # difference in control and treatment mean masses
 obs <- mean(treatment) - mean(control)
-
+`
 The question we want to answer is if the above mass difference is due to chance 
 alone or if the diet has an effect. Here we have access to the population data:
 
 ### Using the Population Data to Simulate the Null Distribution
+`
 # view population data
 population <- read.csv("femaleControlsPopulation.csv")
 population <- unlist(population)
 View(population)
-
+`
 We want to first see what the effect is when the null hypothesis is true, i.e.
 when there is no high-fat diet effect on the mass of the mice. We can simulate 
 this by sampling the population data for both treatment and control groups, after 
