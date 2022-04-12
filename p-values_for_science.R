@@ -61,8 +61,8 @@ min(nulls)
 
 # plot histogram to see the relative proportions
 hist(nulls,
-     main="Null Distribution of Mice Masses'",
-     xlab="Mass difference in g between control and treatment groups",
+     main="Simulated Null Distribution of Mice Masses'",
+     xlab="Mass Difference in gramms Between Control and Treatment Groups",
      ylab="Relative Proportion")
 
 # return to our question: How likely are we to see differences as large as
@@ -80,7 +80,7 @@ mean(nulls > obs)
 # this means the null is larger than the observation 1.42% of the time
 
 # can compute the difference in absolute value taking account of both sides
-# of the distribution, 0.0282g or ~2.8% of the time
+# of the distribution, 0.0282 or ~2.8% of the time
 mean( abs( nulls) > obs)
 
 # the p-value is the probability that an outcome from the null distribution

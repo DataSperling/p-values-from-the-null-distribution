@@ -10,10 +10,11 @@ Model for Studying Mechanisms and Treatment of Impaired Glucose Tolerance and Ty
 (https://github.com/DataSperling/p-values-from-the-null-distribution/blob/main/The-high-fat-diet-fed-mouse.pdf)
 
 ### Experimental Overview
+
 The experiment is one in which 24 mice are fed different diets for a period of
 12 months and their weight was measured weekly as well as blood samples taken 
 which were tested for glucose tolerance. This analysis is concerned only with the 
-mass measurements ie: the effect of diet on mass.
+mass measurements i.e.: the effect of diet on mass.
 
 The experimental data is contained in `femaleMiceWeights.csv` and the population data
 is in `femaleControlsPopulation.csv`. Respective test cohorts are formed from the 
@@ -36,7 +37,7 @@ treatment <- filter(data,Diet=="hf") %>%
 We can see the difference in experiemntal means of the two groups like this:
 
 ```
-# difference in control and treatment mean masses
+# difference in control and treatment mean masses is 3.020833g
 obs <- mean(treatment) - mean(control)
 ```
 The question we want to answer is if the above mass difference is due to chance 
@@ -96,6 +97,54 @@ for(i in 1:n) {
 }
 ```
 
+How do the maximum and minimum values from the above null distribution simulation
+compare to those observed in experimental data?
+
+```
+# maximum and minimum values from sample data
+max(nulls)
+min(nulls)
+```
+
+The respective values are 5.443333g and -5.966667g respectively. Both are larger
+than our experimental observation of ~3.021g. We can look at a histogram of `nulls`
+to get an idea of the distribution of masses under the null.
+
+```
+# plot histogram of the null distribution in nulls
+hist(nulls,
+     main="Simulated Null Distribution of Mice Masses'",
+     xlab="Mass difference in g between control and treatment groups",
+     ylab="Relative Proportion")
+```
+
+Now we have data which we can use to calculate how likely it is to see differences 
+in mean mass as large as the experimental value (~3.021g) under the null hypothesis.
+We calculate the proportion of times the value of the null distribution was larger
+than the experimentally observed value.
+
+```
+# count how often the difference simulated under the null is larger than the
+# experimental difference
+sum( nulls > obs) / n
+```
+
+The answer is 1.42% of the time. However this is only for the positive side, we
+must also take account of the negative side of the distribution:
+
+```
+sum(nulls < obs)/n
+```
+
+The actual p-value is thus twice the above value:
+
+```
+mean( abs( nulls > obs))
+```
+
+The answer is about ~2.8% of the time. This is the answer to the original question
+"What is the probability that an outcome from the null distribution is larger than 
+the experimental value. this is a p-value.
 
 
 
