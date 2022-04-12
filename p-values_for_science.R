@@ -1,18 +1,17 @@
-# introduction to p-values: how can we use p-values to support scientific statements?
+# introduction to p-values: how p-values can be used to support scientific statements
+# this analysis uses mouse weights to
 
 
-# using dplyr
+# import dplyr for data filtering
 library(dplyr)
 
 # import data for experiment and population
 data <- read.csv("femaleMiceWeights.csv")
-population <- unlist(population)
 population <- read.csv("femaleControlsPopulation.csv")
-population <- unlist(population)
 
 
 # create control group eating chow diet
-control <- filter(data,Diet=="chow") %>% 
+control <- dplyr::filter(data,Diet=="chow") %>% 
   dplyr::select(Bodyweight) %>% 
   unlist
 
