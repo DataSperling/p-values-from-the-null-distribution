@@ -1,13 +1,13 @@
-# introduction to p-values: how can we use p-values to support scientific statements
+# introduction to p-values: how can we use p-values to support scientific statements?
 
 
 # using dplyr
 library(dplyr)
 
 # import data for experiment and population
-data <- read.csv("/home/sperling/Jdrive/DataAnal_4_LifeSci_PH525Xx/dataSets/femaleMiceWeights.csv")
+data <- read.csv("femaleMiceWeights.csv")
 population <- unlist(population)
-population <- read.csv("/home/sperling/Jdrive/DataAnal_4_LifeSci_PH525Xx/dataSets/femaleControlsPopulation.csv")
+population <- read.csv("femaleControlsPopulation.csv")
 population <- unlist(population)
 
 
