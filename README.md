@@ -135,18 +135,20 @@ The answer is 1.42% of the time. However this is only for the positive side, we
 must also take account of the negative side of the distribution:
 
 ```
-sum(nulls < obs)/n
+# other tail of distribution
+sum(nulls < obs) / n
 ```
 
 The actual p-value is thus twice the above value:
 
 ```
+# total value takes account of positive and negative tails
 mean( abs( nulls > obs))
 ```
 
 The answer is about ~2.8% of the time. This is the answer to the original question
 "What is the probability that an outcome from the null distribution is larger than 
-the experimental value. this is a p-value".
+the experimental value. This is the p-value".
 
 
 
