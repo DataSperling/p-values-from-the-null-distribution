@@ -7,6 +7,7 @@ the effect of diet on diabetes incidence:
 DIABETES, VOL. 53, SUPPLEMENT 3, DECEMBER 2004 "The High-Fat Diet–Fed Mouse A 
 Model for Studying Mechanisms and Treatment of Impaired Glucose Tolerance and Type 
 2 Diabetes"
+(https://github.com/DataSperling/p-values-from-the-null-distribution/blob/main/The-high-fat-diet-fed-mouse.pdf)
 
 ### Experimental Overview
 The experiment is one in which 24 mice are fed different diets for a period of
@@ -32,7 +33,7 @@ treatment <- filter(data,Diet=="hf") %>%
   unlist
 ```
 
-We can see the difference in means of the two groups like this:
+We can see the difference in experiemntal means of the two groups like this:
 
 ```
 # difference in control and treatment mean masses
@@ -81,7 +82,19 @@ for any interval.
 
 ### Using the Null Distribution to Infer p-values
 
+A for loop can be used to intuitively (but inefficiently) repeat the above sampling
+10,000 times saving the resulting differences as a vector `nulls`, which can be used
+for further analysis.
 
+```
+n <- 10000
+nulls <- vector("numeric",n)
+for(i in 1:n) {
+  control <- sample(population, 12)
+  treatment <- sample(population, 12)
+  nulls[i] <- mean(treatment) - mean(control)
+}
+```
 
 
 
