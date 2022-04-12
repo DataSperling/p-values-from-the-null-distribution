@@ -5,9 +5,10 @@
 # import dplyr for data filtering
 library(dplyr)
 
-# import data for experiment and population
+# import data for experiment group and whole population
 data <- read.csv("femaleMiceWeights.csv")
 population <- read.csv("femaleControlsPopulation.csv")
+population <- unlist(population)
 
 
 # create control group eating chow diet
@@ -26,16 +27,16 @@ obs <- mean(treatment) - mean(control)
 # Null Hypothesis: "Diet, specifically a high-fat diet, has no effect on 
 # the mass of the mice eating it"
 RNGkind()
-control <- sample( population, 12)
+control_samp <- sample( population, 12)
 
 # if the null hypothesis holds there is no difference between treatment and control
 # we can therefore use the same population data
 RNGkind()
-treatment <- sample( population, 12)
+treatment_samp <- sample( population, 12)
 
 # under the above circumstances we are guaranteed to have no high-fat diet effect
 # look at difference in mean masses: -0.4958333g
-mean(treatment) - mean(control)
+mean(treatment_samp) - mean(control_samp)
 
 # each time we repeat the above sampling we get a different value for the null 
 # hypothesis the null distribution is the distribution of all possible realizations
