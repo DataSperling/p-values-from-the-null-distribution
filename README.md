@@ -34,7 +34,7 @@ treatment <- filter(data,Diet=="hf") %>%
   unlist
 ```
 
-We can see the difference in experiemntal means of the two groups like this:
+We can see the difference in experimental means of the two groups like this:
 
 ```
 # difference in control and treatment mean masses is 3.020833g
